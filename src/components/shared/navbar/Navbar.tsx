@@ -4,6 +4,7 @@ import { Button, Link } from "@heroui/react";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { CategoryType } from "@/types/category/category.type";
+import { ThreeDot } from "react-loading-indicators";
 
 const Navbar = () => {
 
@@ -39,7 +40,7 @@ const Navbar = () => {
 
         loadCategory();
     }, []);
-    console.log(categories);
+
     const lgMenu =
         <>{
             categories.map(category =>
@@ -67,10 +68,11 @@ const Navbar = () => {
                     <header className=" flex h-16  items-center justify-between  w-full">
                         <div className="flex items-center gap-4">
                             <button
-                                className="md:hidden"
+                                className="md:hidden cursor-pointer"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 aria-label="Toggle menu"
                                 aria-expanded={isMenuOpen}
+                                
                             >
                                 <span className="sr-only">Menu</span>
                                 <svg
@@ -110,16 +112,39 @@ const Navbar = () => {
                             <Button className='text-[#F3FBF4] bg-[#05893E] shadow shadow-[#05893E]/30'>সাইন আপ</Button>
                         </div>
                     </header>
+
                     <ul className="hidden w-full gap-4 md:flex py-2 items-center justify-center px-4 border-t border-[#F0F5F0]">
-                        {isLoading ? <p>Loading...</p> : error ? <p>{error}</p> :
-                            lgMenu}
+                        {
+                            isLoading || (categories.length === 0 && !error)
+                                ?
+                                <ThreeDot text="Loading" color="#05893E" size="small" textColor="#05893E" />
+                                :
+                                error
+                                    ?
+                                    <div >
+                                        <p className="text-red-500">{error}</p>
+                                    </div>
+                                    :
+                                    lgMenu
+                        }
+
                     </ul>
                 </div>
                 {isMenuOpen && (
                     <div className="border-t border-separator md:hidden">
                         <ul className="flex flex-col gap-2 p-4">
                             {
-                                smMenu
+                                isLoading || (categories.length === 0 && !error)
+                                    ?
+                                    <div className="w-full text-center">
+                                        <ThreeDot color="#05893E" size="small" text="Loading" textColor="#05893E" />
+                                    </div>
+                                    :
+                                    error
+                                        ?
+                                        <p className="w-full text-center text-red-500">{error}</p>
+                                        :
+                                        smMenu
                             }
                             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
                                 <Link href="#" className="block py-2 text-center w-full">
