@@ -1,4 +1,4 @@
-import { Button } from "@heroui/react";
+import { Button, Link } from "@heroui/react";
 import Image from "next/image";
 
 const Banner = () => {
@@ -23,12 +23,14 @@ const Banner = () => {
                         </p>
 
                         <div className="mt-7 flex flex-wrap items-center gap-3">
-                            <Button
-                                size="lg"
-                                className="bg-[#05893E] text-[#F3FBF4] font-medium shadow-md shadow-[#05893E]/20 hover:bg-[#046e32]"
-                            >
-                                সব পণ্য দেখুন
-                            </Button>
+                            <Link className='no-underline' href="#allProducts">
+                                <Button
+                                    size="lg"
+                                    className="bg-[#05893E] text-[#F3FBF4] font-medium shadow-md shadow-[#05893E]/20 hover:bg-[#046e32]"
+                                >
+                                    সব পণ্য দেখুন
+                                </Button>
+                            </Link>
 
                         </div>
                     </div>
@@ -39,7 +41,7 @@ const Banner = () => {
                             <Image
                                 src="/bazar-hero.png"
                                 alt="Hero Image"
-                                className=""
+                                className="w-auto h-auto"
                                 width={300}
                                 height={300}
                             />
