@@ -1,5 +1,6 @@
 import { Product } from "@/types/product/productType"
 import { Card, Chip } from "@heroui/react"
+import Link from "next/link";
 
 
 export interface ProductCardProps {
@@ -43,52 +44,54 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     return (
         <>
-            <Card className="w-full  rounded-3xl border border-base-300 bg-base-100 p-4 shadow-sm backdrop-blur-sm cursor-pointer hover:shadow-xl active:scale-99 transition-all duration-150 ">
-                <Card.Content className="p-0 flex flex-col gap-4">
+            <Link href={`/product_details/${product.id}`}>
+                <Card className="w-full  rounded-3xl border border-base-300 bg-base-100 p-4 shadow-sm backdrop-blur-sm cursor-pointer hover:shadow-xl active:scale-99 transition-all duration-150 ">
+                    <Card.Content className="p-0 flex flex-col gap-4">
 
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-12 w-12 items-center justify-center  bg-base-200 rounded-xl text-2xl">
-                            {product.image}
-                        </div>
-                        <div className="flex flex-col">
-                            <h4 className="text-base font-semibold text-[#1D271F]  leading-loose">
-                                {product.nameBn}
-                            </h4>
-                            <span className="text-xs text-[#1D271F] ">
-                                প্রতি {units_BN}
-                            </span>
-                        </div>
-                    </div>
-
-
-                    <div className="flex items-end justify-between pt-1">
-                        <div className="flex flex-col">
-                            <span className="text-xs text-[#1D271F] ">
-                                আজকের দাম
-                            </span>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-xl font-bold  text-[#1D271F] tracking-tighter">
-                                    {todaysPrice_BN}
-                                </span>
-                                <span className="text-sm font-medium text-[#1D271F]">
-                                    টাকা
+                        <div className="flex items-center gap-3">
+                            <div className="flex h-12 w-12 items-center justify-center  bg-base-200 rounded-xl text-2xl">
+                                {product.image}
+                            </div>
+                            <div className="flex flex-col">
+                                <h4 className="text-base font-semibold text-[#1D271F]  leading-loose">
+                                    {product.nameBn}
+                                </h4>
+                                <span className="text-xs text-[#1D271F] ">
+                                    প্রতি {units_BN}
                                 </span>
                             </div>
                         </div>
 
 
-                        <Chip
-                            size="sm"
-                            variant="soft"
-                            color={product.change.dir === 'up' ? 'danger' : product.change.dir === 'down' ? 'success' : 'default'}
-                            className="h-6 px-2 text-xs font-bold rounded-full flex items-center gap-1"
-                        >
-                            <span className="text-xs leading-none">{product.change.dir === 'up' ? '▲' : product.change.dir === 'down' ? '▼' : product.change.dir === 'flat' && '—'}</span>
-                            <Chip.Label>{changePCT_BN}%</Chip.Label>
-                        </Chip>
-                    </div>
-                </Card.Content>
-            </Card>
+                        <div className="flex items-end justify-between pt-1">
+                            <div className="flex flex-col">
+                                <span className="text-xs text-[#1D271F] ">
+                                    আজকের দাম
+                                </span>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-xl font-bold  text-[#1D271F] tracking-tighter">
+                                        {todaysPrice_BN}
+                                    </span>
+                                    <span className="text-sm font-medium text-[#1D271F]">
+                                        টাকা
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <Chip
+                                size="sm"
+                                variant="soft"
+                                color={product.change.dir === 'up' ? 'danger' : product.change.dir === 'down' ? 'success' : 'default'}
+                                className="h-6 px-2 text-xs font-bold rounded-full flex items-center gap-1"
+                            >
+                                <span className="text-xs leading-none">{product.change.dir === 'up' ? '▲' : product.change.dir === 'down' ? '▼' : '—'}</span>
+                                <Chip.Label>{changePCT_BN}%</Chip.Label>
+                            </Chip>
+                        </div>
+                    </Card.Content>
+                </Card>
+            </Link>
         </>
     )
 }
