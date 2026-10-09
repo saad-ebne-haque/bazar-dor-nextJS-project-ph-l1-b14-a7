@@ -10,7 +10,8 @@ export interface ProductDetailsPageProps {
 }
 
 export const generateStaticParams = async (): Promise<Params[]> => {
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products');
+    const res = await fetch('https://api.api-store.workers.dev/api/bazardor/products/');
+    // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products');
     const products: Product[] = await res.json();
 
     return products.map(product =>
@@ -20,7 +21,8 @@ export const generateStaticParams = async (): Promise<Params[]> => {
 
 export const generateMetadata = async ({ params }: ProductDetailsPageProps): Promise<Metadata> => {
     const { id } = await params
-    const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${id}`);
+    const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products/${id}`);
+    // const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${id}`);
     const product: Product = await res.json();
 
     return {

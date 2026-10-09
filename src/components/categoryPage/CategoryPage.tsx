@@ -13,8 +13,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     const { slug } = await params;
     // fetch1
     const [productsRes, categoryRes] = await Promise.all([
-        fetch(`https://api.abcz.workers.dev/api/bazardor/products?category=${slug}`, { cache: 'no-store' }),
-        fetch(`https://api.abcz.workers.dev/api/bazardor/categories/${slug}`)
+       
+        fetch(`https://api.api-store.workers.dev/api/bazardor/products?category=${slug}`, { cache: 'no-store' }),
+        fetch(`https://api.api-store.workers.dev/api/bazardor/categories/${slug}`)
+
+        // fetch(`https://api.abcz.workers.dev/api/bazardor/products?category=${slug}`, { cache: 'no-store' }),
+        // fetch(`https://api.abcz.workers.dev/api/bazardor/categories/${slug}`)
     ]);
 
     const products: Product[] = await productsRes.json();

@@ -11,7 +11,8 @@ export interface SingleCategotyPageProps {
 
 export async function generateStaticParams(): Promise<Params[]> {
 
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories');
+    const res = await fetch('https://api.api-store.workers.dev/api/bazardor/categories');
+    // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories');
     const categories: { slug: string }[] = await res.json();
 
 
@@ -22,7 +23,8 @@ export async function generateStaticParams(): Promise<Params[]> {
 
 export const generateMetadata = async ({ params }: SingleCategotyPageProps): Promise<Metadata> => {
     const { slug } = await params;
-    const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/categories/${slug}`);
+    const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/categories/${slug}`);
+    // const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/categories/${slug}`);
     const category: CategoryType = await res.json();
     return {
         title: `পণ্য বিভাগ । ${category.nameBn}`,

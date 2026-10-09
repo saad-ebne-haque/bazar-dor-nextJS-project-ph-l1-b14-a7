@@ -18,12 +18,12 @@ const Navbar = () => {
         const loadCategory = async () => {
             setIsLoading(true);
             try {
-                const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories', {
-                    cache: 'force-cache'
-                });
-                // const res = await fetch('https://api.api-store.workers.dev/api/bazardor/categories', {
+                // const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories', {
                 //     cache: 'force-cache'
                 // });
+                const res = await fetch('https://api.api-store.workers.dev/api/bazardor/categories', {
+                    cache: 'force-cache'
+                });
 
                 if (!res.ok) {
                     throw new Error('Faild to fetch categories');
