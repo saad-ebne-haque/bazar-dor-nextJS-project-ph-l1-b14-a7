@@ -112,8 +112,15 @@ const Navbar = () => {
                         </div>
 
                         <div className="hidden items-center gap-4 md:flex">
-                            <Link href="#" className='text-[#1D271F] text-sm font-semibold'>সাইন ইন</Link>
-                            <Button className='text-[#F3FBF4] bg-[#05893E] shadow shadow-[#05893E]/30'>সাইন আপ</Button>
+                            <Link
+                                href="/sign-in"
+                                className='text-[#1D271F] text-sm font-semibold'
+                            >সাইন ইন</Link>
+                            <Link href="/sign-up" className='no-underline'>
+                                <Button
+                                    className='text-[#F3FBF4] bg-[#05893E] shadow shadow-[#05893E]/30'
+                                >সাইন আপ</Button>
+                            </Link>
                         </div>
                     </header>
 
@@ -151,10 +158,10 @@ const Navbar = () => {
                                         smMenu
                             }
                             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-                                <Link href="#" className="block py-2 text-center w-full">
+                                <Link href="/sign-in" className="block py-2 text-center w-full">
                                     সাইন ইন
                                 </Link>
-                                <Link className={'w-full no-underline'}>
+                                <Link href="/sign-up" className={'w-full no-underline'}>
                                     <Button className="w-full bg-[#05893E] shadow shadow-[#05893E]/30">সাইন আপ</Button>
                                 </Link>
                             </li>
