@@ -47,7 +47,7 @@ export default function ProductDetailsContent({ product }: ProductDetailsContent
     const avgPrice = (product.markets.map(item => ((item.max + item.min) / 2)).map(Number).reduce((acc, curr) => acc + curr, 0) / product.markets.length).toFixed(2);
 
     return (
-        <div className="max-w-5xl mx-auto py-6 px-4 space-y-6">
+        <div className="max-w-5xl mx-auto py-6 px-4 space-y-6 mb-25">
             <Breadcrumbs className=" text-red-600">
                 <Breadcrumbs.Item href="/">হোম</Breadcrumbs.Item>
                 <Breadcrumbs.Item href={`/category/${product.category}`}>{product.categoryNameBn}</Breadcrumbs.Item>
@@ -93,7 +93,7 @@ export default function ProductDetailsContent({ product }: ProductDetailsContent
                         <div className="px-6 py-4 rounded-2xl bg-base-100 border border-base-300 w-full">
                             <p className="text-[#1D271F] text-xs">গড় দাম</p>
                             <h1 className="text-[#05893E] text-2xl font-bold">{convertToBanglaLocale(Number(avgPrice))} <span className="text-sm font-medium">টাকা</span></h1>
-                            <p className="text-[#1D271F] text-xs">প্রতি কেজি-এর হিসাবে</p>
+                            <p className="text-[#1D271F] text-xs">প্রতি {convertUnitToBangla(product.unit)}-এর হিসাবে</p>
                         </div>
                     </div>
                 </div>

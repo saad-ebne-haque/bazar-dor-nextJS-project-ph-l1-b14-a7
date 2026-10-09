@@ -28,6 +28,7 @@ const Navbar = () => {
                 if (!res.ok) {
                     throw new Error('Faild to fetch categories');
                 }
+
                 const data = await res.json();
                 setCategories(data);
             } catch (err: unknown) {
@@ -57,7 +58,7 @@ const Navbar = () => {
         <>{
             categories.map(category =>
                 <li key={category.id}>
-                    <Link href="#" className="block py-2 text-center w-full text-xs font-semibold">
+                    <Link href={`/category/${category.slug}`} className="block py-2 text-center w-full text-xs font-semibold">
                         {category.icon}   {category.nameBn}
                     </Link>
                 </li>
@@ -75,7 +76,7 @@ const Navbar = () => {
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 aria-label="Toggle menu"
                                 aria-expanded={isMenuOpen}
-                                
+
                             >
                                 <span className="sr-only">Menu</span>
                                 <svg
