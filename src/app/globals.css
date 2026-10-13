@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F0F5F0;
+  --foreground: #1D271F;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-base-content: #1D271F;
+  --color-primary: #05893E;
+  --color-primary-content: #F3FBF4;
+  --color-error: #D03739;
+  --color-success: #1A9951;
+  --color-error-content: #FFF6F5;
+  --color-primary-strong: #047F39;
+  --color-primary-stronger: #047C37;
+  --color-hover-neutral: #DADEDA;
+  --color-hover-neutral-border: #CCD0CC;
+  --color-hover-primary-border: #037333;
+  --color-hover-error-bg: #BD3133;
+  --color-hover-error-border: #B02D2F;
+  --color-hover-link-primary: #02642B;
+  --color-c-base-100: #FAFCFA;
+  --color-c-base-200: #F0F5F0;
+  --color-c-base-300: #E1E8E1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
+
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+@utility text-20-bold-28-ls--0-5 {
+  @apply text-xl font-bold leading-7 tracking-[-0.5px];
+}
+
+@utility text-12-regular-16 {
+  @apply text-xs font-normal leading-4;
+}
+
+@utility text-12-semibold-17-1 {
+  @apply text-xs font-semibold leading-[17.1px];
+}
+
+@utility text-14-semibold-21 {
+  @apply text-sm font-semibold leading-5.25;
+}
+
+@utility text-12-semibold-18 {
+  @apply text-xs font-semibold leading-4.5;
+}
+
+@utility text-14-medium-20 {
+  @apply text-sm font-medium leading-5;
+}
+
+@utility text-14-regular-20 {
+  @apply text-sm font-normal leading-5;
+}
+
+@utility text-14-semibold-20 {
+  @apply text-sm font-semibold leading-5;
+}
+
+@utility text-12-regular-18 {
+  @apply text-xs font-normal leading-4.5;
+}
+
+@utility text-32-bold-48 {
+  @apply text-[32px] font-bold leading-12;
+}
+
+@utility text-16-semibold-24 {
+  @apply text-base font-semibold leading-6;
+}
+
+@utility text-12-semibold-16 {
+  @apply text-xs font-semibold leading-4;
+}
+
+@utility text-20-bold-28 {
+  @apply text-xl font-bold leading-7;
+}
+
+@utility text-11-semibold-16-5 {
+  @apply text-[11px] font-semibold leading-[16.5px];
+}
+
+@utility text-14-medium-21 {
+  @apply text-sm font-medium leading-5.25;
+}
+
+@utility text-16-medium-24 {
+  @apply text-base font-medium leading-6;
+}
+
+@utility text-14-regular-21 {
+  @apply text-sm font-normal leading-5.25;
+}
+
+@utility text-18-bold-28 {
+  @apply text-lg font-bold leading-7;
+}
+
+@utility text-36-bold-45 {
+  @apply text-4xl font-bold leading-11.25;
+}
+
+@utility text-16-regular-24 {
+  @apply text-base font-normal leading-6;
+}
+
+@utility text-24-bold-32 {
+  @apply text-2xl font-bold leading-8;
+}
+
+@utility text-18-semibold-28 {
+  @apply text-lg font-semibold leading-7;
+}
+
+@utility text-30-bold-36 {
+  @apply text-[30px] font-bold leading-9;
+}
+
+@utility text-14-bold-21 {
+  @apply text-sm font-bold leading-5.25;
+}
+
+
+@utility text-30-bold-37-5 {
+  @apply text-[30px] font-bold leading-[37.5px];
 }
