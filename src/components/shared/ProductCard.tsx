@@ -19,7 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="flex justify-between items-end">
                 <div>
                     <p className="text-12-regular-16">আজকের দাম</p>
-                    <h3 className="text-20-bold-28">১৪৮ <span className="text-14-medium-20">টাকা</span></h3>
+                    <h3 className="text-20-bold-28">{convertToBanglaLocale(Number(product.today))} <span className="text-14-medium-20">টাকা</span></h3>
                 </div>
                 <p className={` text-12-semibold-16 px-2 py-1 rounded-full ${product.change.dir === 'up' ? 'text-error bg-error/10' : product.change.dir === "down" ? "text-success bg-success/10" : "text-base-content bg-base-content/10"}`}>{product.change.dir === 'up' ? '▲' : product.change.dir === "down" ? '▼' : '—'} {convertToBanglaLocale(Number(product.change.pct))}%</p>
             </div>

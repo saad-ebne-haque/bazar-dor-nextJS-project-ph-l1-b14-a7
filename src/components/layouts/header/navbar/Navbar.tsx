@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@heroui/react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Logo from "./Logo";
 import { banglaToday } from "@/func/today";
 import LoggedOut from "./loggedOut/LoggedOut";
@@ -90,7 +90,9 @@ const Navbar = () => {
                             < li key={i} className='h-8 w-[67.2px] rounded-md text-transparent bg-c-base-300 animate-pulse'></li>
                         )
                         :
-                        <Menu categories={categories}></Menu>
+                        <Suspense>
+                            <Menu categories={categories}></Menu>
+                        </Suspense>
                 }
             </ul>
             {
@@ -99,9 +101,11 @@ const Navbar = () => {
                         <ul className="flex flex-col gap-2 p-4 w-full">
                             {
                                 isLoading ?
-                                    [1, 2, 3, 4, 5, 6, 7].map((i) =>  < li key={i} className='h-8 w-[67.2px] rounded-md text-transparent bg-c-base-300 animate-pulse'></li>)
+                                    [1, 2, 3, 4, 5, 6, 7].map((i) => < li key={i} className='h-8 w-[67.2px] rounded-md text-transparent bg-c-base-300 animate-pulse'></li>)
                                     :
-                                    <Menu categories={categories} className="w-full flex justify-center"></Menu>
+                                    <Suspense>
+                                        <Menu categories={categories} className="w-full flex justify-center"></Menu>
+                                    </Suspense>
                             }
                             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4 w-full">
                                 <LoggedOut></LoggedOut>
