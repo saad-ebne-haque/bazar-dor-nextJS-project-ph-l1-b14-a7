@@ -8,10 +8,12 @@ const Header = async () => {
     const products: Product[] = await getAllProducts()
 
     return (
-        <div className="pb-px border-b border-c-base-300 bg-c-base-100">
-            <Navbar></Navbar>
+        <>
+            <div className="bg-c-base-100 sticky top-0 z-50 ">
+                <Navbar></Navbar>
+            </div>
             <MarqueeComponents products={products}></MarqueeComponents>
-        </div>
+        </>
     );
 };
 

@@ -32,7 +32,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg ">
+        <nav className=" w-full border-b bg-c-base-100  ">
             <header className="container mx-auto flex min-h-16  items-center justify-between ">
                 <div className="flex items-center gap-4">
                     <button

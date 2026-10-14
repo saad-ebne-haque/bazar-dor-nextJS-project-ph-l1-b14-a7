@@ -11,7 +11,7 @@ const MarqueeComponents = ({ products }: MarqueeProps) => {
 
 
     return (
-        <div className="min-h-9.25">
+        <div className="min-h-9.25 bg-c-base-100 border-b border-c-base-300">
             <Marquee pauseOnHover>
                 {
                     products.map(product => <div key={product.id} className="flex items-center gap-1.5 px-4 py-2 border-r border-c-base-200">
