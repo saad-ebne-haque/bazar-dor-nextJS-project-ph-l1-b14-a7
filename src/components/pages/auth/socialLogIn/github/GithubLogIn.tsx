@@ -1,3 +1,4 @@
+'use client'
 import { signIn } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import Image from "next/image";
