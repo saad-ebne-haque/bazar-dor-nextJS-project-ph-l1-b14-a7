@@ -1,16 +1,19 @@
 "use client";
 
+import { signUp } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 const SignUpForm = () => {
 
     const [isVisible, setIsVisible] = useState(false);
     const [password, setPassword] = useState("");
-
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setErrorMessage(null);
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data: Record<string, string> = {};
@@ -19,17 +22,20 @@ const SignUpForm = () => {
             data[key] = value.toString();
         });
 
-        // const { data: resData, error } = await signUp.email({
-        //     name: data.name,
-        //     email: data.email,
-        //     password: data.password,
-        //     fetchOptions: {
-        //         onSuccess: () => {
-        //             redirect('/home')
-        //         }
-        //     }
-        // });
+        const { error } = await signUp.email({
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            fetchOptions: {
+                onSuccess: () => {
+                    redirect('/')
+                }
+            },
 
+        });
+        if (error) {
+            setErrorMessage(error.message as string);
+        }
     };
 
 
@@ -37,6 +43,9 @@ const SignUpForm = () => {
         <>
 
             <Form onSubmit={onSubmit}>
+                {
+                    errorMessage && <p className="text-error text-center px-6 mb-5 bg-error/10 w-fit mx-auto py-1 rounded-full">{errorMessage}</p>
+                }
                 <TextField
                     className={'mb-4'}
                     isRequired

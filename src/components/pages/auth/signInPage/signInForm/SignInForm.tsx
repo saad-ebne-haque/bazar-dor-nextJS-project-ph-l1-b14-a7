@@ -1,6 +1,7 @@
 "use client";
 
 
+import { signIn } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
 import { useState } from "react";
@@ -22,22 +23,23 @@ const SignInForm = () => {
         formData.forEach((value, key) => {
             data[key] = value.toString();
         });
-        // const { error } = await signIn.email({
-        //     email: data.email,
-        //     password: data.password,
-        //     callbackURL: '/home'
-        // });
+        const { error } = await signIn.email({
+            email: data.email,
+            password: data.password,
+            callbackURL: '/'
+        });
 
-        // if (error) {
-        //     setErrorMessage(error.message as string);
-        // }
-       
+        if (error) {
+            setErrorMessage(error.message as string);
+        }
+
+
     };
 
     return (
         <Form onSubmit={onSubmit}>
             {
-                errorMessage && <p className="text-error text-center px-6 bg-error/10 w-fit mx-auto py-1 rounded-full">{errorMessage}</p>
+                errorMessage && <p className="text-error text-center px-6 mb-5 bg-error/10 w-fit mx-auto py-1 rounded-full">{errorMessage}</p>
             }
             <TextField
                 isRequired
