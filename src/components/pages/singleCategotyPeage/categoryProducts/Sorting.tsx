@@ -10,7 +10,7 @@ export default function Sorting({ handleSorting }: SortingProps) {
     const itemClass = "rounded-lg data-[focused=true]:bg-primary data-[focused=true]:text-white";
 
 
-    const handleSelectionChange = (key: Key | null) => {
+    const handleSelectionChange = (key: Key | null) => {    
         handleSorting(String(key));
     };
 
