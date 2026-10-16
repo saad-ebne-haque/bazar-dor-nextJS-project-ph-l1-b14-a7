@@ -3,10 +3,12 @@
 import { signUp } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignUpForm = () => {
+
+    const router = useRouter();
 
     const [isVisible, setIsVisible] = useState(false);
     const [password, setPassword] = useState("");
@@ -28,7 +30,7 @@ const SignUpForm = () => {
             password: data.password,
             fetchOptions: {
                 onSuccess: () => {
-                    redirect('/')
+                    router.push('/');
                 }
             },
 

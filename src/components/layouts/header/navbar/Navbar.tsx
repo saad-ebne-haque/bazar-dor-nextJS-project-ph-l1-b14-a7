@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@heroui/react";
+import { Button, Link } from "@heroui/react";
 import { Suspense, useEffect, useState } from "react";
 import Logo from "./Logo";
 import { banglaToday } from "@/func/today";
@@ -8,6 +8,10 @@ import LoggedOut from "./loggedOut/LoggedOut";
 import Menu from "./menu/Menu";
 import { CategoryType } from "@/types/category/category.type";
 import { getAllCategories } from "@/apis/api";
+import LoggedIn from "./loggedIn/LoggedIn";
+import { useSession } from "@/lib/auth-client";
+import { User } from "better-auth";
+import PopUp from "./loggedIn/PopUp";
 
 const Navbar = () => {
 
@@ -15,6 +19,12 @@ const Navbar = () => {
     const [currentDate, setCurrentDate] = useState('');
     const [categories, setCategories] = useState<CategoryType[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+
+
+    const { data, isPending } = useSession();
+    const user: User | null = data?.user ? data.user : null;
+
+
     useEffect(() => {
         const loadCategories = async () => {
             try {
@@ -79,7 +89,14 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden items-center gap-4 md:flex">
-                    <LoggedOut></LoggedOut>
+                    {isPending ?
+                        <>
+                            <Button className={'text-transparent bg-c-base-300 pointer-events-none'} >*****</Button>
+                            <Button className={'text-transparent bg-c-base-300 pointer-events-none'} >*****</Button>
+                        </> :
+                        user ?
+                            <LoggedIn user={user}></LoggedIn> :
+                            <LoggedOut></LoggedOut>}
                 </div>
             </header>
             <hr className="w-screen" />
@@ -108,7 +125,14 @@ const Navbar = () => {
                                     </Suspense>
                             }
                             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4 w-full">
-                                <LoggedOut></LoggedOut>
+                                {isPending ?
+                                    <>
+                                        <Button className={'text-transparent bg-c-base-300 pointer-events-none'} >*****</Button>
+                                        <Button className={'text-transparent bg-c-base-300 pointer-events-none'} >*****</Button>
+                                    </> :
+                                    user ?
+                                        <PopUp user={user}></PopUp>
+                                        : <LoggedOut></LoggedOut>}
                             </li>
                         </ul>
                     </div>
