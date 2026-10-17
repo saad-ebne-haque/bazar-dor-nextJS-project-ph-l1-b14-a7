@@ -65,7 +65,7 @@ const ProfileUpdateForm = () => {
                 </TextField>
                 <div className="w-full">
                     <Button type="submit" className={'w-full bg-primary text-14-semibold-21 border border-primary-strong hover:shadow shadow-primary hover:bg-hover-link-primary '}>
-                        অ্যাকাউন্ট তৈরি করুন
+                        প্রোফাইল আপডেট করুন
                     </Button>
                 </div>
             </Form>
