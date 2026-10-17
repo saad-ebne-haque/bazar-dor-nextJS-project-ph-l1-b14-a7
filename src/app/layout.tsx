@@ -3,6 +3,7 @@ import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layouts/header/Header";
 import Footer from "@/components/layouts/footer/Footer";
+import { Toast } from "@heroui/react";
 
 
 const notoSerifBengali = Noto_Serif_Bengali({
@@ -17,11 +18,11 @@ export const metadata: Metadata = {
   description: " নিত্যপ্রয়োজনীয় পণ্যের বাজার দর। বাজার দরের তুলনা করুন এবং সাশ্রয়ী মূল্যে কেনাকাটা করুন।",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html
       data-scroll-behavior="smooth"
-      lang="en"
+      lang="bn"
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
@@ -30,6 +31,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer></Footer>
+
+        <Toast.Provider placement="top"></Toast.Provider>
       </body>
     </html>
   );

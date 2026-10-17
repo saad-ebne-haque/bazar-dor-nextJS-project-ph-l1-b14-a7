@@ -7,7 +7,7 @@ const SocialLogin = () => {
 
     return (
         <>
-            <div className="flex items-center gap-2 justify-between ">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <GoogleLogin></GoogleLogin>
                 <GithubLogIn></GithubLogIn>
             </div>

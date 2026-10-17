@@ -1,9 +1,18 @@
+import { headers } from "next/headers";
 import SocialLogin from "../socialLogIn/SocialLogin";
 import SignUpForm from "./signUpForm/SignUpForm";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-const SignUp = () => {
+const SignUp = async () => {
 
+    const sessionData = await auth.api.getSession({
+        headers: await headers()
+    })
 
+    if (sessionData) {
+        redirect('/');
+    }
 
     return (
         <div className="bg-c-base-100 border border-c-base-300 rounded-2xl p-6 space-y-4">

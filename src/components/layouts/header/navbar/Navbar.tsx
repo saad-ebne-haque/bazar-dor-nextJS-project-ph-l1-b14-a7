@@ -91,8 +91,8 @@ const Navbar = () => {
                 <div className="hidden items-center gap-4 md:flex">
                     {isPending ?
                         <>
-                            <Button className={'text-transparent bg-c-base-300 pointer-events-none'} >*****</Button>
-                            <Button className={'text-transparent bg-c-base-300 pointer-events-none'} >*****</Button>
+                            <Button className={'text-transparent bg-c-base-300 pointer-events-none animate-pulse'} >*****</Button>
+                            <Button className={'text-transparent bg-c-base-300 pointer-events-none animate-pulse'} >*****</Button>
                         </> :
                         user ?
                             <LoggedIn user={user}></LoggedIn> :

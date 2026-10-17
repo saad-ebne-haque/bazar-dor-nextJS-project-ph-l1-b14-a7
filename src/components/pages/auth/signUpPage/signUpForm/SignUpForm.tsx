@@ -1,43 +1,56 @@
 "use client";
 
-import { signUp } from "@/lib/auth-client";
+import { signUp, useSession } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
-import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField, toast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignUpForm = () => {
-
     const router = useRouter();
+
+    const { data } = useSession();
+    if (data?.user) { 
+
+    }
+
+
 
     const [isVisible, setIsVisible] = useState(false);
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        setErrorMessage(null);
+
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
+        const form = e.currentTarget;
+
+        const formData = new FormData(form);
         const data: Record<string, string> = {};
 
         formData.forEach((value, key) => {
             data[key] = value.toString();
         });
 
-        const { error } = await signUp.email({
+        /* const { error } = */ await signUp.email({
             name: data.name,
             email: data.email,
             password: data.password,
+
             fetchOptions: {
                 onSuccess: () => {
-                    router.push('/');
+                    form.reset();
+                    router.push('/profile');
+                    toast.success('সাইন আপ সফল হয়েছে!');
+                },
+                onError(err) {
+                    toast.danger(err.error.message)
+                    console.log(err.error.message);
                 }
             },
 
         });
-        if (error) {
-            setErrorMessage(error.message as string);
-        }
+
     };
 
 
@@ -45,9 +58,7 @@ const SignUpForm = () => {
         <>
 
             <Form onSubmit={onSubmit}>
-                {
-                    errorMessage && <p className="text-error text-center px-6 mb-5 bg-error/10 w-fit mx-auto py-1 rounded-full">{errorMessage}</p>
-                }
+
                 <TextField
                     className={'mb-4'}
                     isRequired

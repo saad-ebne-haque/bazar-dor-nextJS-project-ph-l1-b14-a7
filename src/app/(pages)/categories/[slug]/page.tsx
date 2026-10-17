@@ -1,5 +1,6 @@
 import { getSingleCategoty } from "@/apis/api"
 import SingleCategory from "@/components/pages/singleCategotyPeage/SingleCategory"
+import SingleCategorySkeleton from "@/components/pages/singleCategotyPeage/SingleCategorySkeleton"
 import { CategoryType } from "@/types/category/category.type"
 import { Metadata } from "next"
 import { Suspense } from "react"
@@ -37,7 +38,7 @@ export default function SingleCategoryPage({ params }: SingleCategoryPageProps) 
 
     return (
         <>
-            <Suspense>
+            <Suspense fallback={<SingleCategorySkeleton></SingleCategorySkeleton>}>
                 <SingleCategory params={params}></SingleCategory>
             </Suspense>
         </>

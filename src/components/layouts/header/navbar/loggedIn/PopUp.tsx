@@ -1,6 +1,6 @@
 "use client";
 import { signOut } from "@/lib/auth-client";
-import { Button, Link } from "@heroui/react";
+import { Button, Link, toast } from "@heroui/react";
 import { User } from "better-auth";
 import { useRouter } from "next/navigation";
 
@@ -13,12 +13,18 @@ interface PopUpProps {
 
 const PopUp = ({ user, className }: PopUpProps) => {
     const router = useRouter();
+
     const handleSignOut = async () => {
         await signOut({
+
             fetchOptions: {
                 onSuccess: () => {
-                    router.push('/sign-in')
-                }
+                    router.push('/sign-in');
+                    toast.success('সাইন আউট সফল হয়েছে!')
+                },
+                onError(err) {
+                    toast.danger(err.error.message);
+                },
             }
         });
     }

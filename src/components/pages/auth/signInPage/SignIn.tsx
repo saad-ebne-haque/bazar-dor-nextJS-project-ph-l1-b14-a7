@@ -1,9 +1,18 @@
+import { auth } from "@/lib/auth";
 import SocialLogin from "../socialLogIn/SocialLogin";
 import SignInForm from "./signInForm/SignInForm";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-const SignIn = () => {
+const SignIn = async () => {
 
-
+    const sessionData = await auth.api.getSession({
+        headers: await headers()
+    })
+    
+    if (sessionData) {
+        redirect('/');
+    }
 
     return (
         <div className="bg-c-base-100 border border-c-base-300 rounded-2xl p-6 space-y-4">
@@ -26,7 +35,7 @@ const SignIn = () => {
                     সাইন আপ করুন
                 </a>
             </p>
-            
+
         </div>
     );
 };

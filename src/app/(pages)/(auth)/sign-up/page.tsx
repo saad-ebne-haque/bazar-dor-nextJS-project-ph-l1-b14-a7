@@ -1,5 +1,7 @@
+import SignInSkeleton from "@/components/pages/auth/signInPage/SignInSkeleton";
 import SignUp from "@/components/pages/auth/signUpPage/SignUp";
 import Link from "next/link";
+import { Suspense } from "react";
 
 const SignUpPage = () => {
 
@@ -14,7 +16,9 @@ const SignUpPage = () => {
                     <p className="text-14-regular-20 text-base-content/70">বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।</p>
                 </div>
 
-                <SignUp></SignUp>
+                <Suspense fallback={<SignInSkeleton></SignInSkeleton>}>
+                    <SignUp></SignUp>
+                </Suspense>
 
 
                 <Link href="/">

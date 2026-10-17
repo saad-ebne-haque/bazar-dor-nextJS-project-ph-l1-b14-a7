@@ -1,14 +1,23 @@
 'use client'
 import { signIn } from "@/lib/auth-client";
-import { Button } from "@heroui/react";
+import { Button, toast } from "@heroui/react";
 import Image from "next/image";
 
+
 const GithubLogIn = () => {
+
 
     const handleSignIn = async () => {
         await signIn.social({
             provider: 'github',
-            callbackURL: '/'
+            fetchOptions: {
+                onSuccess: () => {
+                    toast.success("সাইন ইন সফল হয়েছে!");
+                },
+                onError(err) {
+                    toast.danger(err.error.message);
+                }
+            }
         });
     }
 

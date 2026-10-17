@@ -1,14 +1,25 @@
 "use client"
 import { signIn } from "@/lib/auth-client";
-import { Button } from "@heroui/react";
+import { Button, toast } from "@heroui/react";
 import Image from "next/image";
+
 
 const GoogleLogin = () => {
 
+
+
     const handleSignIn = async () => {
         await signIn.social({
-            provider: 'google'
-        })
+            provider: 'google',
+            fetchOptions: {
+                onSuccess: () => {
+                    toast.success("সাইন ইন সফল হয়েছে!");
+                },
+                onError(err) {
+                    toast.danger(err.error.message);
+                }
+            }
+        });
     }
 
     return (

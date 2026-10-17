@@ -3,44 +3,52 @@
 
 import { signIn } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
-import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField, toast } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignInForm = () => {
+    const router = useRouter();
 
+    
     const [isVisible, setIsVisible] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
-        setErrorMessage(null);
+
 
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
+
+        const form = e.currentTarget;
+
+        const formData = new FormData(form);
         const data: Record<string, string> = {};
 
         formData.forEach((value, key) => {
             data[key] = value.toString();
         });
-        const { error } = await signIn.email({
+        await signIn.email({
             email: data.email,
             password: data.password,
-            callbackURL: '/'
+            fetchOptions: {
+                onSuccess: () => {
+                    form.reset();
+                    toast.success('সাইন ইন সফল হয়েছে');
+                    router.push('/');
+                },
+                onError: (err) => {
+                    toast.danger(err.error.message);
+                }
+            }
         });
 
-        if (error) {
-            setErrorMessage(error.message as string);
-        }
 
 
     };
 
     return (
         <Form onSubmit={onSubmit}>
-            {
-                errorMessage && <p className="text-error text-center px-6 mb-5 bg-error/10 w-fit mx-auto py-1 rounded-full">{errorMessage}</p>
-            }
+
             <TextField
                 isRequired
                 name="email"

@@ -1,4 +1,5 @@
 import ProductDetails from "@/components/pages/productDetailsPage/ProductDetails"
+import ProductDetailsSkeleton from "@/components/pages/productDetailsPage/ProductDetailsSkeleton"
 import { Suspense } from "react"
 
 export interface ProductDetailsPageProps {
@@ -10,7 +11,7 @@ export default function ProductDetailsPage({ params }: ProductDetailsPageProps) 
     return (
         <>
 
-            <Suspense>
+            <Suspense fallback={<ProductDetailsSkeleton></ProductDetailsSkeleton>}>
                 <ProductDetails params={params}></ProductDetails>
             </Suspense>
         </>
