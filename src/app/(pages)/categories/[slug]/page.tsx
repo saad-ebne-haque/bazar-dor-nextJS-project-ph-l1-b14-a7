@@ -1,4 +1,4 @@
-import { getSingleCategoty } from "@/apis/api"
+import { getAllCategories, getSingleCategoty } from "@/apis/api"
 import SingleCategory from "@/components/pages/singleCategotyPeage/SingleCategory"
 import SingleCategorySkeleton from "@/components/pages/singleCategotyPeage/SingleCategorySkeleton"
 import { CategoryType } from "@/types/category/category.type"
@@ -27,7 +27,12 @@ export async function generateMetadata({ params }: SingleCategoryPageProps): Pro
     }
 }
 
-
+export async function generateStaticParams() {
+    const categories: CategoryType[] = await getAllCategories();
+    return categories.map((category) => ({
+        slug: category.slug,
+    }));
+}
 
 
 
