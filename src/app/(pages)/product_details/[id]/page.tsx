@@ -1,4 +1,4 @@
-import { getAllProducts, getSingleProduct } from "@/apis/api"
+import {  getSingleProduct } from "@/apis/api"
 import ProductDetails from "@/components/pages/productDetailsPage/ProductDetails"
 import ProductDetailsSkeleton from "@/components/pages/productDetailsPage/ProductDetailsSkeleton"
 import { Product } from "@/types/product/product.type"
